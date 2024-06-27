@@ -1,6 +1,6 @@
 # Namaste React 🚀
 
-# Swiggy Live Preview - https://foodieemenu.netlify.app/
+# App Live Preview - https://foodieemenu.netlify.app/
 
 # Parcel
 
