@@ -1,5 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
@@ -17,7 +18,7 @@ const Body = () => {
   const fetchData = async () => {
     try {
       const data = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.742030087662197&lng=78.60166244208813&page_type=DESKTOP_WEB_LISTING"
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.096409658061162&lng=79.10369083285332&page_type=DESKTOP_WEB_LISTING"
       );
       const json = await data.json();
 
@@ -73,7 +74,10 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurant.map((restaurant) => (
-          <RestaurantCard key={restaurant?.info?.id} resData={restaurant} />
+          <Link 
+          key={restaurant?.info?.id}
+           to={"/restaurants/"+restaurant.info.id}><RestaurantCard  resData={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
