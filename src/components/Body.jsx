@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   // Local State Variables
@@ -53,6 +54,15 @@ const Body = () => {
     console.log("Top rated restaurants:", filteredList);
     setFilteredRestaurant(filteredList);
   };
+
+const onlineStatus = useOnlineStatus();
+
+if(onlineStatus===false)return <h1>
+  Look's like you are offline!! Please check your internet connection
+</h1>
+
+
+
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
