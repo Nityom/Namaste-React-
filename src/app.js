@@ -6,8 +6,11 @@ import Body from './components/Body';import About from "./components/About";
 import { createBrowserRouter,RouterProvider,Outlet } from "react-router-dom";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
+import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 //Chunking
 //Lazy loading
 //Dynamic Bundling
@@ -31,12 +34,15 @@ useEffect(()=>{
 
 
   return (
-    <UserContext.Provider value={{ loggedInUser : userName , setUserName}}>  
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser : userName , setUserName}}>  
       <div className="app">
      <Header />
    <Outlet />
    </div>
    </UserContext.Provider>
+    </Provider>
+    
  
   );
 };
@@ -65,6 +71,12 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurants/:resId",
         element: <RestaurantMenu/>
+        
+      },
+
+      {
+        path: "/cart",
+        element: <Cart/>
         
       }
     ],
